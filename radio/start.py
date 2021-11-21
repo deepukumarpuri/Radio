@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup 
-from config import BOT_USERNAME, BOT_NAME
+from config import BOT_NAME
 
 @Client.on_message(filters.command("start"))
 async def start(client, m: Message):
