@@ -13,4 +13,4 @@ async def start(client, m: Message):
                                     ]]
                             ))
    else:
-      await m.reply(f"**@{BOT_NAME} is Alive! ✨**"
+      await m.reply(f"**@{BOT_NAME} is Alive! ✨**")
