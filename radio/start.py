@@ -5,11 +5,21 @@ from config import BOT_USERNAME, BOT_NAME
 @Client.on_message(filters.command("start"))
 async def start(client, m: Message):
    if m.chat.type == 'private':
-       await m.reply(f"**Hey I am Radio Bot 📻\n\n** \n`Add this @{BOT_USERNAME} to your Group and Make it Admin \n2) Add`  `to your Group` \n3) **Commands** : \n`/radio` Ytlink Live \n`/stop`",   
+       await m.reply(f"**Hey I am Radio Bot 📻\n\n** \n`Use Me To Play Radio in Vc` \n\n Send /help For More info",   
                             reply_markup=InlineKeyboardMarkup(
                                 [[
                                      InlineKeyboardButton(
-                                            "Support", url="t.me/DeCodeSupport")
+                                            "Support", url="t.me/DK_BOTZ")
+                                    ]]
+                            ))
+@Client.on_message(filters.command("help"))
+async def start(client, m: Message):
+   if m.chat.type == 'private':
+       await m.reply(f"**Hey I am Radio Bot 📻\n\n** \n\n List Of Commands\n\n /radio link :- To Play Radio\n /stop :- Stop Radio\n\nWant Add Me in Your Group Contact To My Owner :- @DKBOTZHEP",   
+                            reply_markup=InlineKeyboardMarkup(
+                                [[
+                                     InlineKeyboardButton(
+                                            "Support", url="t.me/DK_BOTZ")
                                     ]]
                             ))
    else:
