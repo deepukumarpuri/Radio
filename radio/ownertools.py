@@ -14,9 +14,9 @@ from config import (
 )
 from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
-from handlers import __version__
+from radio import __version__
 from radio.database import db
-from helpers.dbtools import main_broadcast_handler
+from radio.dbtools import main_broadcast_handler
 from radio.decorators import sudo_users_only
 from radio.filters import command
 from pyrogram import Client, filters
@@ -36,7 +36,7 @@ async def botstats(_, message: Message):
     disk_usage = psutil.disk_usage("/").percent
     total_users = await db.total_users_count()
     await message.reply_text(
-        text=f"**📊 stats of @{BOT_USERNAME}** \n\n**🤖 Bot version:** `{__version__}` \n\n**🙎🏼 total users:** \n » **on bot pm:** `{total_users}` \n\n**💾 disk usage:** \n » **disk space:** `{total}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n\n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`",
+        text=f"**📊 Stats of @{BOT_USERNAME}** \n\n**🤖 Bot version:** `{__version__}` \n\n**🙎🏼 total users:** \n » **on bot pm:** `{total_users}` \n\n**💾 disk usage:** \n » **disk space:** `{total}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n\n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`",
         parse_mode="Markdown",
         quote=True,
     )
