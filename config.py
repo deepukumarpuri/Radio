@@ -20,10 +20,10 @@ CMD_IMG = getenv("CMD_IMG", "https://telegra.ph/file/66518ed54301654f0b126.png")
 ALIVE_IMG = getenv("ALIVE_IMG", "https://telegra.ph/file/c83b000f004f01897fe18.png")
 API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
-BOT_USERNAME = getenv("BOT_USERNAME", "DK BOTZ")
+BOT_USERNAME = getenv("BOT_USERNAME", "DKBOTZ")
 ASSISTANT_NAME = getenv("ASSISTANT_NAME", "DK_BOTZ")
 GROUP_SUPPORT = getenv("GROUP_SUPPORT", "DK_BOTZ")
-UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "DKBOTZ"")
+UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "DKBOTZ")
 # isi dengan username kamu tanpa simbol @
 OWNER_NAME = getenv("OWNER_NAME", "DKBOTZ"")
 # fill with your nickname
