@@ -25,7 +25,7 @@ ASSISTANT_NAME = getenv("ASSISTANT_NAME", "DK_BOTZ")
 GROUP_SUPPORT = getenv("GROUP_SUPPORT", "DK_BOTZ")
 UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "DKBOTZ")
 # isi dengan username kamu tanpa simbol @
-OWNER_NAME = getenv("OWNER_NAME", "DKBOTZ"")
+OWNER_NAME = getenv("OWNER_NAME", "DKBOTZ")
 # fill with your nickname
 ALIVE_NAME = getenv("ALIVE_NAME", "Levina")
 # fill with your id as the owner of the bot
