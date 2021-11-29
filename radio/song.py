@@ -13,7 +13,6 @@ import aiofiles
 import aiohttp
 import requests
 import wget
-from yt_dlp import Client, filters
 from pyrogram.errors import FloodWait, MessageNotModified
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
