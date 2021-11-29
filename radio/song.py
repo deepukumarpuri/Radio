@@ -8,7 +8,7 @@ import os
 import time
 from random import randint
 from urllib.parse import urlparse
-
+from pyrogram import Client, filters
 import aiofiles
 import aiohttp
 import requests
@@ -135,15 +135,6 @@ def get_file_extension_from_url(url):
     return basename.split(".")[-1]
 
 
-async def download_song(url):
-    song_name = f"{randint(6969, 6999)}.mp3"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            if resp.status == 200:
-                f = await aiofiles.open(song_name, mode="wb")
-                await f.write(await resp.read())
-                await f.close()
-    return song_name
 
 
 def time_to_seconds(times):
@@ -151,53 +142,6 @@ def time_to_seconds(times):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
-@Client.on_message(
-    command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
-)
-async def vsong(client, message):
-    ydl_opts = {
-        "format": "best",
-        "keepvideo": True,
-        "prefer_ffmpeg": False,
-        "geo_bypass": True,
-        "outtmpl": "%(title)s.%(ext)s",
-        "quite": True,
-    }
-    query = " ".join(message.command[1:])
-    try: 
-        results = YoutubeSearch(query, max_results=5).to_dict()
-        link = f"https://youtube.com{results[0]['url_suffix']}"
-        title = results[0]["title"][:40]
-        thumbnail = results[0]["thumbnails"][0]
-        thumb_name = f"{title}.jpg"
-        thumb = requests.get(thumbnail, allow_redirects=True)
-        open(thumb_name, "wb").write(thumb.content)
-        results[0]["duration"]
-        results[0]["url_suffix"]
-        results[0]["views"]
-        message.from_user.mention
-    except Exception as e:
-        print(e)
-    try:
-        msg = await message.reply("📥 **downloading video...**")
-        with YoutubeDL(ydl_opts) as ytdl:
-            ytdl_data = ytdl.extract_info(link, download=True)
-            file_name = ytdl.prepare_filename(ytdl_data)
-    except Exception as e:
-        return await msg.edit(f"🚫 **error:** {e}")
-    preview = wget.download(thumbnail)
-    await msg.edit("📤 **uploading video...**")
-    await message.reply_video(
-        file_name,
-        duration=int(ytdl_data["duration"]),
-        thumb=preview,
-        caption=ytdl_data["title"],
-    )
-    try:
-        os.remove(file_name)
-        await msg.delete()
-    except Exception as e:
-        print(e)
 
 
 @Client.on_message(command(["lyrics", f"lyrics@{bn}"]))
