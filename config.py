@@ -1,7 +1,7 @@
 import os
 from os import getenv
 from dotenv import load_dotenv
-from helpers.uptools import fetch_heroku_git_url
+from radio.uptools import fetch_heroku_git_url
 
 load_dotenv()
 que = {}
