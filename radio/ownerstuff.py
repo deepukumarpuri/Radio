@@ -20,6 +20,8 @@ from config import (
     UPSTREAM_REPO,
     BOT_NAME,
 )
+from radio.song import get_text, humanbytes
+from radio.noobusers import noob_users_only
 from radio.filters import command
 from radio.decorators import sudo_users_only
 
@@ -137,7 +139,7 @@ def _check_heroku(func):
 
 
 @Client.on_message(command("logs"))
-@sudo_users_only
+@noob_users_only
 @_check_heroku
 async def logswen(client: Client, message: Message, happ):
     msg = await message.reply_text("`please wait for a moment!`")
@@ -148,7 +150,7 @@ async def logswen(client: Client, message: Message, happ):
 
 # Restart Bot
 @Client.on_message(command("restart"))
-@sudo_users_only
+@noob_users_only
 @_check_heroku
 async def restart(client: Client, message: Message, hap):
     await message.reply_text("`restarting now, please wait...`")
@@ -236,7 +238,7 @@ def fetch_heroku_git_url(api_key, app_name):
 
 
 @Client.on_message(command("usage"))
-@sudo_users_only
+@noob_users_only
 @_check_heroku
 async def gib_usage(client, message, hc):
   msg_ = await message.reply_text("`[HEROKU] - Please Wait.`")
