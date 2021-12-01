@@ -1,6 +1,6 @@
 from . import queues
 from pyrogram import Client
-from pytgcalls import PyTgCalls
+from pytgcalls import GroupCallFactory
 from pytgcalls.types import Update
 from pytgcalls.types.input_stream import InputAudioStream
 from pytgcalls.types.input_stream import InputStream
@@ -12,7 +12,7 @@ pytgcalls = PyTgCalls(client)
 
 
 @pytgcalls.on_stream_end()
-async def on_stream_end(client: PyTgCalls, update: Update) -> None:
+async def on_stream_end(client: GroupCallFactory, update: Update) -> None:
     chat_id = update.chat_id
     queues.task_done(chat_id)
 
