@@ -7,7 +7,6 @@ from pytgcalls import GroupCall
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from signal import SIGINT
-from yt_dlp import YoutubeDL
 from config import API_ID, API_HASH, SESSION_NAME
 
 app = Client(SESSION_NAME, API_ID, API_HASH)
