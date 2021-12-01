@@ -1,6 +1,7 @@
 Pytgcalls
 Pyrogram
 Tgcrypto
+motor
 ffmpeg-python
 git+https://github.com/Itsunknown-12/yt-dl@master
 tswift
