@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, Chat, CallbackQuery
 
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("use"))
 async def start(client, m: Message):
    if m.chat.type == 'private':
       await m.reply(f"✨ **Hello, I Am a Telegram Most Powerful RADIO Bot.**\n\n💭 **I Was Created To Play Radio in Group Voice chats easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group",
