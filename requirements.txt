@@ -12,7 +12,6 @@ requests
 aiohttp
 aiofiles
 asyncio
-ffmpeg-python
 pillow
 future
 psutil
@@ -22,4 +21,14 @@ pymongo
 dnspython
 heroku3
 gitpython
-
+pymongo[srv]==3.11.4
+marshmallow==3.12.2
+umongo==3.0.0
+telegraph==1.4.1
+googletrans==3.1.0a0
+gTTS
+pyshorteners
+bs4
+imdbpy
+ytthumb
+pyrogram
