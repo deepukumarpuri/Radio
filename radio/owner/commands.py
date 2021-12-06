@@ -1,6 +1,6 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram import Client, filters
-from config import Config
+from config import OWNER_ID
 import time
 import string
 import shutil
@@ -26,12 +26,12 @@ def humanbytes(size):
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + 'B'
     
-@Client.on_message(filters.private & filters.command("broadcasts") & filters.reply & filters.user(Config.OWNER_ID) & ~filters.edited)
+@Client.on_message(filters.private & filters.command("broadcasts") & filters.reply & filters.user(OWNER_ID) & ~filters.edited)
 async def _broadcast(_, m: Message):
     await broadcast_handler(m)
 
 
-@Client.on_message(filters.private & filters.command("status") & filters.user(Config.OWNER_ID)
+@Client.on_message(filters.private & filters.command("status") & filters.user(OWNER_ID)
 async def _status(bot, update):
   total, used, free = shutil.disk_usage(".")
   total = humanbytes(total)
@@ -54,7 +54,7 @@ Total Users in DB: {total_users}**""",
     reply_markup=STAT_BUTTONS
   )
 
-@Client.on_message(filters.private & filters.command("check") & filters.user(Config.OWNER_ID))
+@Client.on_message(filters.private & filters.command("check") & filters.user(OWNER_ID))
 async def check_handler(bot: Client, m: Message):
     if len(m.command) == 2:
         editable = await m.reply_text(
@@ -71,7 +71,7 @@ async def check_handler(bot: Client, m: Message):
             disable_web_page_preview=True
         )
 
-@Client.on_message(filters.private & filters.command("ban_user") & filters.user(Config.OWNER_ID))
+@Client.on_message(filters.private & filters.command("ban_user") & filters.user(OWNER_ID))
 async def ban(c: Client, m: Message):
     if len(m.command) == 1:
         await m.reply_text(
@@ -140,7 +140,7 @@ async def unban(c: Client, m: Message):
         )
 
 
-@Client.on_message(filters.private & filters.command("banned_users") & filters.user(Config.OWNER_ID))
+@Client.on_message(filters.private & filters.command("banned_users") & filters.user(OWNER_ID))
 async def _banned_usrs(_, m: Message):
     all_banned_users = await db.get_all_banned_users()
     banned_usr_count = 0
