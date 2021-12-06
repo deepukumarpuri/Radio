@@ -59,6 +59,9 @@ BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
 DATABASE_URL = environ.get('DATABASE_URL', "")
 DATABASE_URI = environ.get('DATABASE_URL', "")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Watermarks")
+COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
+
+
 
 #IMDB SETTINGS
 IMDB_TEMPLATE = getenv("IMDB_TEMPLATE", "<b>🎬 Title:</b> <a href={url}>{title}</a>\n<b>📺 Type:</b> {kind}\n<b>📆 Release:</b> <a href={url}/releaseinfo>{release_date}</a>\n<b>🌟 Rating:</b> <a href={url}/ratings>{rating} / 10</a>\n(based on <code>{votes}</code> user ratings.)\n\n<b>📀 Runtime:</b> <code>{runtime} minutes</code>\n<b>🎭 Genres:</b> {genres}\n\n<b>☀️ Languages:</b> {languages}\n<b>🎛 Countries:</b> {countries}\n<b>🎥 Director:</b> {director}\n<b>📝 Writers:</b> {writer}\n\n<b>© Powered by: <a href='https://t.me/+y53tWFUw6Q43NzE9'>{message.chat.title}</a></b>\n\n<b>✍️ Note:</b> <s>This message will be Auto-deleted after 5 minutes to avoid copyright issues.</s>")
@@ -80,5 +83,6 @@ HEROKU_URL = fetch_heroku_git_url(HEROKU_API_KEY, HEROKU_APP_NAME)
 
 
 # Bot settings
-CACHE_TIME = int(environ.get('CACHE_TIME', 300))
-USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
+
+CACHE_TIME = os.environ.get("CACHE_TIME", 300)
+USE_CAPTION_FILTER = os.environ.get("USE_CAPTION_FILTER", False)
