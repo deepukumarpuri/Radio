@@ -77,3 +77,8 @@ UPSTREAM_REPO = os.environ.get(
     "UPSTREAM_REPO", "https://github.com/levina-lab/VeezMusic"
 )
 HEROKU_URL = fetch_heroku_git_url(HEROKU_API_KEY, HEROKU_APP_NAME)
+
+
+# Bot settings
+CACHE_TIME = int(environ.get('CACHE_TIME', 300))
+USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
