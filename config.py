@@ -57,6 +57,7 @@ COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
 #MONGA DB URL
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
 DATABASE_URL = environ.get('DATABASE_URL', "")
+DATABASE_URI = environ.get('DATABASE_URL', "")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Watermarks")
 
 #IMDB SETTINGS
