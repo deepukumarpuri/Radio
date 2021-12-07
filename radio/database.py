@@ -133,6 +133,6 @@ class Database:
 
 
 # Database
-db = Database(DATABASE_URL, BOT_USERNAME)
-mongo_db_lmao = MongoClient(DATABASE_URL)
+db = Database(DATABASE_URI, DATABASE_NAME)
+mongo_db_lmao = MongoClient(DATABASE_URI)
 dcmdb = mongo_db_lmao.handlers
