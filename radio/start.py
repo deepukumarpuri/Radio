@@ -22,5 +22,3 @@ async def start(client, m: Message):
                              "✨ Channel", url="https://t.me/DKBOTZ")
                        ]]
                     ))
-   else:
-      await m.reply("**✨ Bot is Online Now ✨**")
