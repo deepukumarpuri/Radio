@@ -43,7 +43,7 @@ async def start(client, message):
             InlineKeyboardButton('📚 Commands', callback_data='dkcmd'),
             InlineKeyboardButton('🌐 Terms & Condition', callback_data='about')
             ],[
-            InlineKeyboardButton('❤️ Donate',, url=f'https://t.me/{OWNER_NAME}')
+            InlineKeyboardButton('❤️ Donate', url=f'https://t.me/{OWNER_NAME}')
             ],[
             InlineKeyboardButton('📣 Official Channel', url='https://t.me/DKBOTZNETWORK'),
             InlineKeyboardButton('✨ NEW Features', callback_data='cbfeature')
@@ -90,7 +90,7 @@ async def start(client, message):
             InlineKeyboardButton('📚 Commands', callback_data='dkcmd'),
             InlineKeyboardButton('🌐 Terms & Condition', callback_data='about')
             ],[
-            InlineKeyboardButton('❤️ Donate',, url=f'https://t.me/{OWNER_NAME}')
+            InlineKeyboardButton('❤️ Donate', url=f'https://t.me/{OWNER_NAME}')
             ],[
             InlineKeyboardButton('📣 Official Channel', url='https://t.me/DKBOTZNETWORK'),
             InlineKeyboardButton('✨ NEW Features', callback_data='cbfeature')
