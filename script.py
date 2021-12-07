@@ -1,11 +1,16 @@
+import os
+from config import ALIVE_NAME, BOT_NAME, BOT_USERNAME, GROUP_SUPPORT, OWNER_NAME, ASSISTANT_USERNAME, ASSISTANT_NAME, UPDATES_CHANNEL, RADIO_BOT
+from radio import __version__
+
 class Script(object):
-    START_TXT = """Hello {},
+    START_TXT = """✨ **Welcome {message.from_user.mention()} !**\n
+✨ **Hello, I Am a Telegram Most Powerful [{RADIO_BOT}](https://t.me/{BOT_USERNAME}).**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
 
-My name is <a href=https://t.me/{}>{}</a>!
+💡 **Find out all the Bot's commands and how they work by clicking On The » 📚 Commands Button!**
 
-<b>I can  Its Easy To Use Me :)
+🔖 **To know how to use this bot, please click on the Below Button**"""
 
-Just Add me to Your Group As Admin, Hit The Help Button For More Info..</b>"""
+    GROUP_START_TXT = """**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is Working Normally\n\n Bot Assistant: [{ASSISTANT_NAME}](https://t.me/{ASSISTANT_USERNAME})\n\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, For Playing Radio in VC\n\nNote :- Without My Bot Assisant i Cannot Play Radio in Vc\n Contact To My Master And Buy Bot Premium. My Master is [{ALIVE_NAME}](https://t.me/{OWNER_NAME})** ❤"""
 
     HELP_TXT = """Hey {}
 
