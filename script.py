@@ -5,13 +5,13 @@ from radio import __version__
 class Script(object):
     START_TXT = """✨ Hello {},
 
-✨ **I Am A Telegram Most Powerful <a href='https://t.me/VCRADIOPLAYBOT'>VC RADIO PLAY BOT</a> .**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
+✨ **I Am A Telegram Most Powerful <a href='https://t.me/VC_RADI_PLAY_BOT'>VC RADIO PLAY BOT</a> .**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
 
 💡 **Find Out All The Bot's Commands And How They Work By Clicking On The » 📚 Commands Button!**
 
 🔖 **To Know How to Use This Bot, Please click on the Below Button**"""
 
-    GROUP_START_TXT = """✨ **Hello {}, I'm VC RADIO PLAY BOT**\n\n✨ Bot is Working Normally\n\n Bot Assistant: [{ASSISTANT_NAME}](https://t.me/{ASSISTANT_USERNAME})\n\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, For Playing Radio in VC\n\nNote :- Without My Bot Assisant i Cannot Play Radio in Vc\n Contact To My Master And Buy Bot Premium. My Master is [{ALIVE_NAME}](https://t.me/{OWNER_NAME})** ❤"""
+    GROUP_START_TXT = """✨ **Hello {}, I'm <a href='https://t.me/VC_RADI_PLAY_BOT'>VC RADIO PLAY BOT</a> **\n\n✨ Bot is Working Normally\n\n Bot Assistant: <a href='https://t.me/VCRADIOBOTHELPER'>VC RADIO PLAY BOT HELPER PREMIUM</a>\n\n🍀 My Master: <a href='https://t.me/DKBOTZHELP'>Anonymous</a> \n✨ Bot Version: 2.0 \n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, For Playing Radio in VC\n\nNote :- Without My Bot Assisant i Cannot Play Radio in Vc\n Contact To My Master And Buy Bot Premium. My Master is <a href='https://t.me/DKBOTZHELP'>Anonymous</a> ** ❤"""
 
 
     HELP_TXT = """Hey {}
