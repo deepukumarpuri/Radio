@@ -52,32 +52,7 @@ async def _human_time_duration(seconds):
 
 
 
-@Client.on_message(
-    command(["start", f"start@{BOT_USERNAME}"]) & filters.group & ~filters.edited
-)
-async def start_group(client: Client, message: Message):
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
 
-    keyboard = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("✨ Group", url=f"https://t.me/{GROUP_SUPPORT}"),
-                InlineKeyboardButton(
-                    "📣 Channel", url=f"https://t.me/{UPDATES_CHANNEL}"
-                ),
-            ]
-        ]
-    )
-
-    alive = f"**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is Working Normally\n\n Bot Assistant: [{ASSISTANT_NAME}](https://t.me/{ASSISTANT_USERNAME})\n\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, For Playing Radio in VC\n\nNote :- Without My Bot Assisant i Cannot Play Radio in Vc\n Contact To My Master And Buy Bot Premium. My Master is [{ALIVE_NAME}](https://t.me/{OWNER_NAME})** ❤"
-
-    await message.reply_photo(
-        photo=f"{ALIVE_IMG}",
-        caption=alive,
-        reply_markup=keyboard,
-    )
 
 
 @Client.on_message(
@@ -85,7 +60,7 @@ async def start_group(client: Client, message: Message):
 )
 async def help(client: Client, message: Message):
     await message.reply_text(
-        f"""✨ **Hello** {message.from_user.mention()} !
+        f"""✨ **Hello** User !
 
 » **Press The Below Button To See The List Of Available Commands !**
 
