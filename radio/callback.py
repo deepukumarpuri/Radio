@@ -166,7 +166,7 @@ async def cbsudo(_, query: CallbackQuery):
 This Tools For Control @{MUSICBOT}. This Command Allow For Some Users. Contact To @DKBOTZHELP
 
 /usage - Check @{MUSICBOT} Dyno Usage
-/reset - Reset @{MUSICBOT} Bot
+/restart - Reset @{MUSICBOT} Bot
 /logs - Check @{MUSICBOT} Bot log
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
