@@ -3,14 +3,13 @@ from config import ALIVE_NAME, BOT_NAME, BOT_USERNAME, GROUP_SUPPORT, OWNER_NAME
 from radio import __version__
 
 class Script(object):
-    START_TXT = """✨ **Welcome {message.from_user.mention()} !**\n
-✨ **Hello, I Am a Telegram Most Powerful [{RADIO_BOT}](https://t.me/{BOT_USERNAME}).**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
+    START_TXT = """✨ Hello {},
 
-💡 **Find out all the Bot's commands and how they work by clicking On The » 📚 Commands Button!**
+✨ **Hello, I Am A Telegram Most Powerful <a href='https://t.me/VCRADIOPLAYBOT'>VC RADIO PLAY BOT</a> .**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
 
-🔖 **To know how to use this bot, please click on the Below Button**"""
+💡 **Find Out All The Bot's Commands And How They Work By Clicking On The » 📚 Commands Button!**
 
-    GROUP_START_TXT = """**Hello {message.from_user.mention()}, i'm {BOT_NAME}**\n\n✨ Bot is Working Normally\n\n Bot Assistant: [{ASSISTANT_NAME}](https://t.me/{ASSISTANT_USERNAME})\n\n🍀 My Master: [{ALIVE_NAME}](https://t.me/{OWNER_NAME})\n✨ Bot Version: `v{__version__}`\n🍀 Pyrogram Version: `{pyrover}`\n✨ Python Version: `{__python_version__}`\n🍀 Uptime Status: `{uptime}`\n\n**Thanks for Adding me here, For Playing Radio in VC\n\nNote :- Without My Bot Assisant i Cannot Play Radio in Vc\n Contact To My Master And Buy Bot Premium. My Master is [{ALIVE_NAME}](https://t.me/{OWNER_NAME})** ❤"""
+🔖 **To Know How to Use This Bot, Please click on the Below Button**"""
 
     HELP_TXT = """Hey {}
 
@@ -23,16 +22,6 @@ class Script(object):
 ➥ Data Base: MongoDB
 ➥ Bot Server: Railway/Heroku
 ➥ Build Status: v1.0.1 [ Beta ]"""
-
-    SOURCE_TXT = """<b>Source:</b>
-IMDb is a Open source project.
-Source: <a href='https://github.com/josprojects/tgmoviebot'>GitHub - Click here 👈</a>
-
-<b>DEVS:</b>
-- <a href='https://t.me/josprojects'>Jos Projects</a>
-
-<b>SUPPORT GROUP</b>
-- <a href='https://t.me/+y53tWFUw6Q43NzE9'>Jos Movie Club</a>"""
 
     MANUALFILTER_TXT = """Help: <b>Filters</b>
 
