@@ -36,8 +36,8 @@ __This Bot Licensed Under GNU-GPL 3.0 License By @DKBOTZ__""",
 @Client.on_callback_query(filters.regex("cbstart"))
 async def cbstart(_, query: CallbackQuery):
     await query.edit_message_text(
-        f"""✨ **Welcome {message.from_user.mention()} !**\n
-✨ **Hello, I Am a Telegram Most Powerful [{RADIO_BOT}](https://t.me/{BOT_USERNAME}).**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
+        f"""✨ **Hello  User !**\n
+✨ **I Am a Telegram Most Powerful [{RADIO_BOT}](https://t.me/{BOT_USERNAME}).**\n\n💭 **I Was Created To Play Radio in Group Voice Chats Easily.**\n\n❔ **To Find Out How To Use Me, Press The Help Button Below** 👇🏻\n Must Be Read Terms & Condition For Bot Adding in Your Group
 
 💡 **Find out all the Bot's commands and how they work by clicking On The » 📚 Commands Button!**
 
