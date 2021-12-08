@@ -142,7 +142,7 @@ async def cbadmin(_, query: CallbackQuery):
 
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
+            [[InlineKeyboardButton("🔙 Go Back", callback_data="dkcmd")]]
         ),
     )
 
@@ -170,7 +170,7 @@ This Tools For Control @{MUSICBOT}. This Command Allow For Some Users. Contact T
 /logs - Check @{MUSICBOT} Bot log
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
+            [[InlineKeyboardButton("🔙 Go Back", callback_data="dkcmd")]]
         ),
     )
 
@@ -190,7 +190,7 @@ async def cbowner(_, query: CallbackQuery):
 
 ⚡ __Powered by {BOT_NAME} A.I__""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🔙 Go Back", callback_data="cbhelp")]]
+            [[InlineKeyboardButton("🔙 Go Back", callback_data="dkcmd")]]
         ),
     )
 
