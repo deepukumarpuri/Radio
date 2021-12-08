@@ -8,7 +8,7 @@ from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id
 from radio.database import db
-from config import ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, OWNER_NAME, BOT_USERNAME
+from config import ADMINS, AUTH_CHANNEL, LOG_CHANNEL, PICS, OWNER_NAME
 from utils import get_size, is_subscribed, temp
 import re
 from radio import __version__
@@ -50,24 +50,10 @@ async def _human_time_duration(seconds):
             parts.append("{} {}{}".format(amount, unit, "" if amount == 1 else "s"))
     return ", ".join(parts)
 
+
 @Client.on_message(filters.command("start"))
 async def start(client, message):
-    current_time = datetime.utcnow()
-    uptime_sec = (current_time - START_TIME).total_seconds()
-    uptime = await _human_time_duration(int(uptime_sec))
-
     if message.chat.type in ['group', 'supergroup']:
-        buttons = [
-            [
-                InlineKeyboardButton('📣 Channel', url='https://t.me/DKBOTZ')
-            ],
-            [
-                InlineKeyboardButton('📚 Commands', callback_data='dkcmd'),
-                InlineKeyboardButton('Close ✗', callback_data="close_data"),
-            ]
-            ]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await message.reply(Script.GROUP_START_TXT.format(message.from_user.mention if message.from_user else message.chat.title, temp.U_NAME, temp.B_NAME), disable_web_page_preview=True, reply_markup=reply_markup)
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
         if not await db.get_chat(message.chat.id):
             total=await client.get_chat_members_count(message.chat.id)
@@ -155,26 +141,11 @@ async def log_file(bot, message):
     except Exception as e:
         await message.reply(str(e))
 
-@Client.on_message(
-    command(["help", f"help@{BOT_USERNAME}"]) & filters.group & ~filters.edited
-)
-async def help(client: Client, message: Message):
-    await message.reply_text(
-        f"""✨ **Hello** {message.from_user.mention()} !
-
-» **Press The Below Button To See The List Of Available Commands !**
-
-⚡ __Powered by {BOT_NAME} A.I__""",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton(text="📚 Commands", callback_data="dkcmd")]]
-        ),
-    )
-
 
 @Client.on_message(command(["ping", f"ping@{BOT_USERNAME}"]) & ~filters.edited)
 async def ping_pong(client: Client, message: Message):
     start = time()
-    m_reply = await message.reply_text("pinging...")
+    m_reply = await message.reply_text("Pinging...")
     delta_ping = time() - start
     await m_reply.edit_text("🏓 `PONG!!`\n" f"⚡️ `{delta_ping * 1000:.3f} ms`")
 
@@ -190,3 +161,5 @@ async def get_uptime(client: Client, message: Message):
         f"• **Uptime:** `{uptime}`\n"
         f"• **Start Time:** `{START_TIME_ISO}`"
     )
+
+
