@@ -20,6 +20,7 @@ from radio.filters import command
 from pyrogram import Client, filters
 from pyrogram import __version__ as pyrover
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+from radio.dbtools import delcmd_is_on, delcmd_off, delcmd_on, handle_user_status
 
 __major__ = 0
 __minor__ = 2
@@ -51,9 +52,9 @@ async def _human_time_duration(seconds):
 
 
 
-
-
-
+@Client.on_message()
+async def _(bot: Client, cmd: Message):
+    await handle_user_status(bot, cmd)
 
 @Client.on_message(
     command(["help", f"help@{BOT_USERNAME}"]) & filters.group & ~filters.edited
