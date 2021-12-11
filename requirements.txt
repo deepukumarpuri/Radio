@@ -6,7 +6,7 @@ tswift
 youtube_search_python
 youtube_search
 Pyrogram
-git+https://github.com/Itsunknown-12/yt-dl@master
+git+https://github.com/yt-dlp/yt-dlp@master
 python-dotenv
 requests
 aiohttp
