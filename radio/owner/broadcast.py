@@ -27,7 +27,7 @@ from pyrogram.types import Message
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
-@Client.on_message(command("stats"))
+@Client.on_message(command("status"))
 @sudo_users_only
 async def botstats(_, message: Message):
     total, used, free = shutil.disk_usage(".")
