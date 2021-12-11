@@ -19,7 +19,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import BOT_USERNAME
 
 
-@Client.on_message(filters.command(["genpassword", f"genpassword@{BOT_USERNAME}, 'genpw', f"genpw@{BOT_USERNAME}"]))
+@Client.on_message(filters.command(["genpassword", f"genpassword@{BOT_USERNAME}", 'genpw', f"genpw@{BOT_USERNAME}"]))
 async def password(bot, update):
     message = await update.reply_text(text="`Processing...`")
     password = "abcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+".lower()
