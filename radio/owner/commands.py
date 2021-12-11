@@ -82,7 +82,7 @@ async def start(client, message):
             InlineKeyboardButton('❔ HOW TO USE THIS BOT', callback_data='cbguide')
             ],[
             InlineKeyboardButton('📚 Commands', callback_data='dkcmd'),
-            InlineKeyboardButton('🌐 Terms & Condition', callback_data='about')
+            InlineKeyboardButton('🌐 Terms & Condition', callback_data='cdinfo')
             ],[
             InlineKeyboardButton('❤️ Donate', url=f'https://t.me/{OWNER_NAME}')
             ],[
@@ -129,7 +129,7 @@ async def start(client, message):
             InlineKeyboardButton('❔ HOW TO USE THIS BOT', callback_data='cbguide')
             ],[
             InlineKeyboardButton('📚 Commands', callback_data='dkcmd'),
-            InlineKeyboardButton('🌐 Terms & Condition', callback_data='about')
+            InlineKeyboardButton('🌐 Terms & Condition', callback_data='cdinfo')
             ],[
             InlineKeyboardButton('❤️ Donate', url=f'https://t.me/{OWNER_NAME}')
             ],[
