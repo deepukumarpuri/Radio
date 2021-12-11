@@ -1,16 +1,15 @@
-from info import ADMINS
 from script import Script
 from time import time, sleep
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired, UserAdminInvalid
-from config import BOT_USERNAME
+from config import BOT_USERNAME, ADMINS
 
 
 @Client.on_message(filters.incoming & ~filters.private & filters.command('inkick') & filters.user(ADMINS))
 def inkick(client, message):
-    if message.from_user.id not in Config.SUDO:
+    if message.from_user.id not in ADMINS:
         return await message.reply(f"This Command only For used by creator of the bot, ({str(Config.ADMINS)})")
   user = client.get_chat_member(message.chat.id, message.from_user.id)
   if user.status == ("creator"):
