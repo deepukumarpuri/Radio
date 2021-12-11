@@ -1,41 +1,45 @@
-from pyrogram import Client, filters
-import datetime
-import time
+import os
+import shutil
+import sys
+import traceback
+from functools import wraps
+from os import environ, execle
+import psutil
+from config import (
+    BOT_USERNAME,
+    GROUP_SUPPORT,
+    OWNER_ID,
+)
+from radio.song import get_text, humanbytes
 from radio.database import db
-from config import ADMINS
-from utils import broadcast_messages
-import asyncio
+from radio.dbtools import main_broadcast_handler
+from radio.decorators import sudo_users_only
+from radio.filters import command
+from pyrogram import Client, filters
+from pyrogram.types import Message
         
-@Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
-# https://t.me/JosProjects
-async def verupikkals(bot, message):
-    users = await db.get_all_users()
-    b_msg = message.reply_to_message
-    sts = await message.reply_text(
-        text='Broadcasting your messages...'
-    )
-    start_time = time.time()
-    total_users = await db.total_users_count()
-    done = 0
-    blocked = 0
-    deleted = 0
-    failed =0
+@Client.on_message(
+    filters.private
+    & filters.command("broadcast")
+    & filters.user(OWNER_ID)
+    & filters.reply
+)
+async def broadcast_handler_open(_, m: Message):
+    await main_broadcast_handler(m, db)
 
-    success = 0
-    async for user in users:
-        pti, sh = await broadcast_messages(int(user['id']), b_msg)
-        if pti:
-            success += 1
-        elif pti == False:
-            if sh == "Bocked":
-                blocked+=1
-            elif sh == "Deleted":
-                deleted += 1
-            elif sh == "Error":
-                failed += 1
-        done += 1
-        await asyncio.sleep(2)
-        if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
-    time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
-    await sts.edit(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")
+@Client.on_message(command("stats"))
+@sudo_users_only
+async def botstats(_, message: Message):
+    total, used, free = shutil.disk_usage(".")
+    total = humanbytes(total)
+    used = humanbytes(used)
+    free = humanbytes(free)
+    cpu_usage = psutil.cpu_percent()
+    ram_usage = psutil.virtual_memory().percent
+    disk_usage = psutil.disk_usage("/").percent
+    total_users = await db.total_users_count()
+    await message.reply_text(
+        text=f"**📊 stats of @{BOT_USERNAME}** \n\n**🤖 bot version:** `2.0` \n\n**🙎🏼 total users:** \n » **on bot pm:** `{total_users}` \n\n**💾 disk usage:** \n » **disk space:** `{total}` \n » **used:** `{used}({disk_usage}%)` \n » **free:** `{free}` \n\n**🎛 hardware usage:** \n » **CPU usage:** `{cpu_usage}%` \n » **RAM usage:** `{ram_usage}%`",
+        parse_mode="Markdown",
+        quote=True,
+    )
