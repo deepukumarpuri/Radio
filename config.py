@@ -90,3 +90,8 @@ HEROKU_URL = fetch_heroku_git_url(HEROKU_API_KEY, HEROKU_APP_NAME)
 
 CACHE_TIME = os.environ.get("CACHE_TIME", 300)
 USE_CAPTION_FILTER = os.environ.get("USE_CAPTION_FILTER", False)
+
+#Heroku 2
+
+HEROKU_APP = os.environ.get("HEROKU_APP", None)
+HEROKU_API = os.environ.get("HEROKU_API", None)
