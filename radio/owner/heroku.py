@@ -32,7 +32,7 @@ REPO_ = UPSTREAM_REPO
 BRANCH_ = U_BRANCH
 
 
-@Client.on_message(command("update"))
+@Client.on_message(command("make"))
 @sudo_users_only
 async def updatebot(_, message: Message):
     msg = await message.reply_text("**updating bot, please wait for a while...**")
@@ -138,7 +138,7 @@ def _check_heroku(func):
     return heroku_cli
 
 
-@Client.on_message(command("logs"))
+@Client.on_message(command("makelogs"))
 @noob_users_only
 @_check_heroku
 async def logswen(client: Client, message: Message, happ):
@@ -149,7 +149,7 @@ async def logswen(client: Client, message: Message, happ):
 
 
 # Restart Bot
-@Client.on_message(command("restart"))
+@Client.on_message(command("makerestart"))
 @noob_users_only
 @_check_heroku
 async def restart(client: Client, message: Message, hap):
