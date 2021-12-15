@@ -3,6 +3,7 @@ from os import getenv
 from os import environ
 from dotenv import load_dotenv
 from pytgcalls import PyTgCalls
+from pyrogram import Client, filters
 from radio.uptools import fetch_heroku_git_url
 
 load_dotenv()
