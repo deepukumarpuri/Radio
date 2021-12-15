@@ -2,6 +2,7 @@ import os
 from os import getenv
 from os import environ
 from dotenv import load_dotenv
+from pytgcalls import PyTgCalls
 from radio.uptools import fetch_heroku_git_url
 
 load_dotenv()
@@ -57,6 +58,7 @@ ALIVE_NAME = getenv("ALIVE_NAME", "Anonymous")
 # just fill with True or False (optional)
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
+HNDLR = getenv("HNDLR", "!")
 
 #MONGA DB URL
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
@@ -95,3 +97,11 @@ USE_CAPTION_FILTER = os.environ.get("USE_CAPTION_FILTER", False)
 
 HEROKU_APP = os.environ.get("HEROKU_APP", None)
 HEROKU_API = os.environ.get("HEROKU_API", None)
+
+contact_filter = filters.create(
+    lambda _, __, message: (message.from_user and message.from_user.is_contact)
+    or message.outgoing
+)
+
+bot = Client(SESSION, API_ID, API_HASH, plugins=dict(root="radio"))
+call_py = PyTgCalls(bot)

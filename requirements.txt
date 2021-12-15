@@ -2,9 +2,11 @@ TgCrypto
 ffmpeg-python
 git+https://github.com/pyrogram/pyrogram@master
 pytgcalls==3.0.0.dev10
+py-tgcalls==0.8.1rc1
 tswift
 youtube_search_python
 youtube_search
+youtube-search-python==1.4.6
 Pyrogram
 git+https://github.com/deepukumarpuri/ytp@master
 python-dotenv
@@ -32,3 +34,4 @@ bs4
 imdbpy
 ytthumb
 pyrogram
+googletrans==4.0.0rc1
