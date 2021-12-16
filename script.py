@@ -1,7 +1,3 @@
-import os
-from config import ALIVE_NAME, BOT_NAME, BOT_USERNAME, GROUP_SUPPORT, OWNER_NAME, ASSISTANT_USERNAME, ASSISTANT_NAME, UPDATES_CHANNEL, RADIO_BOT
-from radio import __version__
-
 class Script(object):
     START_TXT = """✨ Hello {},
 
@@ -40,6 +36,14 @@ class Script(object):
 • /filters - list all the filters of a chat.
 • /del - delete a specific filter in chat.
 • /delall - delete the whole filters in a chat (chat owner only)."""
+
+    UPGRADE_TEXT = "Upgrade plan 🥰 @DKBOTZ"
+
+    CURENT_PLAN_DETAILS = """Current plan Details
+--------
+Telegram ID: <code>{}</code>
+Plan name: <a href='https://t.me/DKBOTZ'>{}</a>
+Expires on: {}"""
 
     BUTTON_TXT = """Help: <b>Buttons</b>
 
