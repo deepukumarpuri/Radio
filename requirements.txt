@@ -32,3 +32,6 @@ bs4
 imdbpy
 ytthumb
 pyrogram
+git+git://github.com/google/chatbase-python.git
+beautifulsoup4
+hachoir
