@@ -3,7 +3,6 @@ from os import getenv
 from os import environ
 from dotenv import load_dotenv
 from pyrogram import Client, filters
-from pytgcalls import PyTgCalls
 from radio.uptools import fetch_heroku_git_url
 
 load_dotenv()
@@ -99,11 +98,3 @@ USE_CAPTION_FILTER = os.environ.get("USE_CAPTION_FILTER", False)
 
 HEROKU_APP = os.environ.get("HEROKU_APP", None)
 HEROKU_API = os.environ.get("HEROKU_API", None)
-
-contact_filter = filters.create(
-    lambda _, __, message: (message.from_user and message.from_user.is_contact)
-    or message.outgoing
-)
-
-bot = Client(SESSION, API_ID, API_HASH, plugins=dict(root="radio"))
-call_py = PyTgCalls(bot)
