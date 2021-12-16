@@ -2,7 +2,6 @@ import os
 from os import getenv
 from os import environ
 from dotenv import load_dotenv
-from pyrogram import Client, filters
 from radio.uptools import fetch_heroku_git_url
 
 load_dotenv()
@@ -58,7 +57,6 @@ ALIVE_NAME = getenv("ALIVE_NAME", "Anonymous")
 # just fill with True or False (optional)
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
 COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
-HNDLR = getenv("HNDLR", "!")
 
 #MONGA DB URL
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
@@ -67,8 +65,7 @@ DATABASE_URI = environ.get('DATABASE_URL', "")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Watermarks")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
-#PLAN
-CHAT_BASE_TOKEN = environ.get('CHAT_BASE_TOKEN', "")
+
 
 #IMDB SETTINGS
 IMDB_TEMPLATE = getenv("IMDB_TEMPLATE", "<b>🎬 Title:</b> <a href={url}>{title}</a>\n<b>📺 Type:</b> {kind}\n<b>📆 Release:</b> <a href={url}/releaseinfo>{release_date}</a>\n<b>🌟 Rating:</b> <a href={url}/ratings>{rating} / 10</a>\n(based on <code>{votes}</code> user ratings.)\n\n<b>📀 Runtime:</b> <code>{runtime} minutes</code>\n<b>🎭 Genres:</b> {genres}\n\n<b>☀️ Languages:</b> {languages}\n<b>🎛 Countries:</b> {countries}\n<b>🎥 Director:</b> {director}\n<b>📝 Writers:</b> {writer}\n\n<b>© Powered by: <a href='https://t.me/+y53tWFUw6Q43NzE9'>{message.chat.title}</a></b>\n\n<b>✍️ Note:</b> <s>This message will be Auto-deleted after 5 minutes to avoid copyright issues.</s>")
