@@ -11,7 +11,7 @@ VIDEO_CALL = {}
 
 
 
-@app.on_message(filters.outgoing & filters.command('play'))
+@app.on_message(filters.outgoing & filters.command('vplay'))
 async def stream(client, m: Message):
     replied = m.reply_to_message
     if not replied:
@@ -41,7 +41,7 @@ async def stream(client, m: Message):
         await m.reply("❌ **Mohon Balas Ke Video**")
         return os.system("rm -rf downloads")
 
-@app.on_message(filters.outgoing & filters.command('stop'))
+@app.on_message(filters.outgoing & filters.command('vstop'))
 async def stopvideo(client, m: Message):
     chat_id = m.chat.id
     try:
@@ -50,8 +50,4 @@ async def stopvideo(client, m: Message):
     except Exception as e:
         await m.reply(f"**🚫 Error** - `{e}`")
 
-app.start()
-print('>>> VC VIDEO USERBOT STARTED')
-idle()
-app.stop()
-print('>>> VC VIDEO USERBOT STOPPED')
+
