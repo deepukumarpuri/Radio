@@ -34,7 +34,7 @@ PICS = list(getenv("PICS", "https://telegra.ph/file/8b42f6caf6ef5fd76766f.jpg ht
 
 #OWNERS CONFIG
 SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
-PRO_USERS = int(os.environ.get("PRO_USERS"))
+PRO_USERS = list(map(int, getenv("PRO_USERS").split()))
 NOOB_USERS = list(map(int, getenv("NOOB_USERS").split()))
 OWNER_ID = int(os.environ.get("OWNER_ID"))
 ADMINS = int(os.environ.get("OWNER_ID"))
