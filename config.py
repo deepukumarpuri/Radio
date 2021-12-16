@@ -9,7 +9,6 @@ from radio.uptools import fetch_heroku_git_url
 load_dotenv()
 que = {}
 admins = {}
-class Config(object):
 #BOT SETTINGS
 SESSION_NAME = getenv("SESSION_NAME", "session")
 BOT_TOKEN = getenv("BOT_TOKEN")
