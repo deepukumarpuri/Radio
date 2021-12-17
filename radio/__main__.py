@@ -1,7 +1,6 @@
 from pyrogram import Client, idle
 from config import API_ID, API_HASH, BOT_TOKEN
 from radio.radio import app
-from radio.player import app
 
 bot = Client(
     ":memory:",
