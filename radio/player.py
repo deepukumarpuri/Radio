@@ -3,15 +3,16 @@ import asyncio
 from pytgcalls import GroupCallFactory
 from pyrogram import filters, Client, idle
 from pyrogram.types import Message
+from radio.radio import app
 from config import API_ID, API_HASH, SESSION_NAME
 
-app = Client(SESSION_NAME, API_ID, API_HASH)
+
 group_call_factory = GroupCallFactory(app, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM)
 VIDEO_CALL = {}
 
 
 
-@app.on_message(filters.outgoing & filters.command('vplay'))
+@Client.on_message(filters.command('vplay'))
 async def stream(client, m: Message):
     replied = m.reply_to_message
     if not replied:
@@ -41,7 +42,7 @@ async def stream(client, m: Message):
         await m.reply("❌ **Mohon Balas Ke Video**")
         return os.system("rm -rf downloads")
 
-@app.on_message(filters.outgoing & filters.command('vstop'))
+@Client.on_message(filters.command('vstop'))
 async def stopvideo(client, m: Message):
     chat_id = m.chat.id
     try:
