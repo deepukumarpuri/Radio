@@ -3,6 +3,7 @@ import signal
 # noinspection PyPackageRequirements
 import ffmpeg  # pip install ffmpeg-python
 from pyrogram import Client, filters
+from config import SESSION_NAME, API_ID, API_HASH
 from pyrogram.types import Message
 from pytgcalls import GroupCall  # pip install pytgcalls
 
