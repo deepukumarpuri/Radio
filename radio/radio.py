@@ -1,103 +1,86 @@
-import os
-import asyncio
-import re
-import subprocess
-import ffmpeg
-from pytgcalls import GroupCall
+import signal
+
+# noinspection PyPackageRequirements
+import ffmpeg  # pip install ffmpeg-python
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from signal import SIGINT
-from yt_dlp import YoutubeDL
-from config import API_ID, API_HASH, SESSION_NAME
+from pytgcalls import GroupCall  # pip install pytgcalls
+
+# Example of pinned message in a chat:
+'''
+Radio stations:
+1. https://hls-01-regions.emgsound.ru/11_msk/playlist.m3u8
+To start replay to this message with command !start <ID>
+To stop use !stop command
+'''
 
 app = Client(SESSION_NAME, API_ID, API_HASH)
-ydl_opts = {
-    "geo_bypass": True,
-    "geo_bypass_country": "IN",
-    "nocheckcertificate": True
-    }
-ydl = YoutubeDL(ydl_opts)
 
+# Commands available only for anonymous admins
+async def anon_filter(_, __, m: Message):
+    return bool(m.from_user is None and m.sender_chat)
+
+
+anonymous = filters.create(anon_filter)
+
+GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
-RADIO_CALL = {}
-
-STREAM_IMG = "https://telegra.ph/file/353c6d9242326eb0ca9af.jpg", 
-STOP_IMG = "https://telegra.ph/file/1e099a211c8fbbd9c70ba.jpg"
 
 
-@Client.on_message(filters.command("radio"))
-async def stream(client, m: Message):
-    if len(m.command) < 2:
-        await m.reply_text('`🚫 You forgot to enter a Stream URL`')
+@Client.on_message(anonymous & filters.command('start', prefixes='!'))
+async def start(client, message: Message):
+    input_filename = f'radio-{message.chat.id}.raw'
+
+    group_call = GROUP_CALLS.get(message.chat.id)
+    if group_call is None:
+        group_call = GroupCall(client, input_filename, path_to_log_file='')
+        GROUP_CALLS[message.chat.id] = group_call
+
+    if not message.reply_to_message or len(message.command) < 2:
+        await message.reply_text(
+            'You forgot to replay list of stations or pass a station ID'
+        )
         return
-     
-    query = m.command[1]
-    input_filename = f'radio-{m.chat.id}.raw'
-    radiostrt = await m.reply_text("`...`")
-    
-    # Checking and Stopping Already Running Processes in the Current Chat
-    process = FFMPEG_PROCESSES.get(m.chat.id)
+
+    process = FFMPEG_PROCESSES.get(message.chat.id)
     if process:
-        try:
-            process.send_signal(SIGINT)
-            await asyncio.sleep(1)
-        except Exception as e:
-            print(e)
+        process.send_signal(signal.SIGTERM)
 
-    # To Filter out YT Live and Radio links
-    regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
-    match = re.match(regex,query)
-    if match:
-        try:
-            meta = ydl.extract_info(query, download=False)
-            formats = meta.get('formats', [meta])
-            for f in formats:
-                ytstreamlink = f['url']
-            station_stream_url = ytstreamlink
-        except Exception as e:
-            await message.reply_text(f'**⚠️ Error** \n{e}')
-            print(e)
-    else:
-        station_stream_url = query
-        print(station_stream_url)
+    station_stream_url = None
+    station_id = message.command[1]
+    msg_lines = message.reply_to_message.text.split('\n')
+    for line in msg_lines:
+        line_prefix = f'{station_id}. '
+        if line.startswith(line_prefix):
+            station_stream_url = (
+                line.replace(line_prefix, '').replace('\n', '')
+            )
+            break
 
-    # Extracting audio to RAW FILE
-    process = (
-        ffmpeg.input(station_stream_url)
-        .output(input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k')
-        .overwrite_output()
-        .run_async()
-    )
-    FFMPEG_PROCESSES[m.chat.id] = process
+    if not station_stream_url:
+        await message.reply_text(f'Can\'t find a station with id {station_id}')
+        return
 
-    # Starting Radio on Group Call
-    chat_id = m.chat.id    
-    if chat_id in RADIO_CALL:
-        await asyncio.sleep(1)
-        await radiostrt.edit(f'📻 Started **[Live Streaming]({query})** in `{chat_id}`', disable_web_page_preview=True)
-    else:
-        await radiostrt.edit(f'`📻 Radio is Starting...`')
-        await asyncio.sleep(3)
-        group_call = GroupCall(app, input_filename, path_to_log_file='')
-        await group_call.start(chat_id)
-        RADIO_CALL[chat_id] = group_call
-        await radiostrt.edit(f' 📻 Started **[Live Streaming]({query})** in `{chat_id}`', disable_web_page_preview=True)
-    
-        
-@Client.on_message(filters.command("stop"))
-async def stopradio(client, m: Message):
-    chat_id = m.chat.id
-    smsg = await m.reply_text(f'⏱️ Stopping...')
-    process = FFMPEG_PROCESSES.get(m.chat.id)
+    await group_call.start(message.chat.id)
+
+    process = ffmpeg.input(station_stream_url).output(
+        input_filename,
+        format='s16le',
+        acodec='pcm_s16le',
+        ac=2,
+        ar='48k'
+    ).overwrite_output().run_async()
+    FFMPEG_PROCESSES[message.chat.id] = process
+
+    await message.reply_text(f'Radio #{station_id} is playing...')
+
+
+@Client.on_message(anonymous & filters.command('stop', prefixes='!'))
+async def stop(_, message: Message):
+    group_call = GROUP_CALLS.get(message.chat.id)
+    if group_call:
+        await group_call.stop()
+
+    process = FFMPEG_PROCESSES.get(message.chat.id)
     if process:
-        try:
-            process.send_signal(SIGINT)
-            await asyncio.sleep(3)
-        except Exception as e:
-            print(e)
-    if chat_id in RADIO_CALL:
-        await RADIO_CALL[chat_id].stop()
-        RADIO_CALL.pop(chat_id)
-        await smsg.edit(f'**Stopped Streaming**')
-    else:
-        await smsg.edit(f'`Nothing is Streaming!`')
+        process.send_signal(signal.SIGTERM)
