@@ -64,7 +64,7 @@ async def play(c: Client, m: Message):
         ]
     )
     if m.sender_chat:
-        return await m.reply_text("you're an __Anonymous Admin__ !\n\n» revert back to user account from admin rights.")
+        return await m.reply_text("you're an __Anonymous__ Admin !\n\n» revert back to user account from admin rights.")
     try:
         aing = await c.get_me()
     except Exception as e:
@@ -95,7 +95,30 @@ async def play(c: Client, m: Message):
             await m.reply_text(
                 f"@{ASSISTANT_NAME} **is banned in group** {m.chat.title}\n\n» **unban the userbot first if you want to use this bot.**"
             )
-
+            return
+    except UserNotParticipant:
+        if m.chat.username:
+            try:
+                await user.join_chat(m.chat.username)
+            except Exception as e:
+                await m.reply_text(f"❌ **userbot failed to join**\n\n**reason**: `{e}`")
+                return
+        else:
+            try:
+                invitelink = await c.export_chat_invite_link(
+                    m.chat.id
+                )
+                if invitelink.startswith("https://t.me/+"):
+                    invitelink = invitelink.replace(
+                        "https://t.me/+", "https://t.me/joinchat/"
+                    )
+                await user.join_chat(invitelink)
+            except UserAlreadyParticipant:
+                pass
+            except Exception as e:
+                return await m.reply_text(
+                    f"❌ **userbot failed to join**\n\n**reason**: `{e}`"
+                )
     if replied:
         if replied.audio or replied.voice:
             suhu = await replied.reply("📥 **downloading audio...**")
