@@ -4,10 +4,7 @@ from pytgcalls import GroupCallFactory
 from pyrogram import filters, Client, idle
 from pyrogram.types import Message
 from config import API_ID, API_HASH, SESSION_NAME
-
-app = Client(SESSION_NAME, API_ID, API_HASH)
-group_call_factory = GroupCallFactory(app, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRAM)
-VIDEO_CALL = {}
+from radio.radio import app
 
 
 
@@ -50,8 +47,4 @@ async def stopvideo(client, m: Message):
     except Exception as e:
         await m.reply(f"**🚫 Error** - `{e}`")
 
-app.start()
-print('>>> VC VIDEO USERBOT STARTED')
-idle()
-app.stop()
-print('>>> VC VIDEO USERBOT STOPPED')
+
