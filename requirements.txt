@@ -35,3 +35,4 @@ pyrogram
 git+git://github.com/google/chatbase-python.git
 beautifulsoup4
 hachoir
+countryinfo
