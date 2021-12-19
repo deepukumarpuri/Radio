@@ -15,7 +15,6 @@ asyncio
 pillow
 future
 psutil
-git+https://github.com/pytgcalls/pytgcalls@master
 wget
 motor
 pymongo
