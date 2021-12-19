@@ -28,7 +28,7 @@ STOP_IMG = "https://telegra.ph/file/1e099a211c8fbbd9c70ba.jpg"
 @Client.on_message(filters.command("radio"))
 async def stream(client, m: Message):
     if len(m.command) < 2:
-        await m.reply_text('`🚫 You forgot to enter a Stream URL`')
+        await m.reply_text('`🚫 You Forgot To Enter A Stream URL`')
         return
      
     query = m.command[1]
@@ -100,4 +100,4 @@ async def stopradio(client, m: Message):
         RADIO_CALL.pop(chat_id)
         await smsg.edit(f'**Stopped Streaming**')
     else:
-        await smsg.edit(f'`Nothing is Streaming!`')
+        await smsg.edit(f'`Nothing is Streaming! `')
