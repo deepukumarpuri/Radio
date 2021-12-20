@@ -1,3 +1,4 @@
+#@DKBOTZ
 import logging
 from config import BOT_USERNAME
 from radio.filters import command, other_filters
