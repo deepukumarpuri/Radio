@@ -37,16 +37,16 @@ IMG_4 = getenv("IMG_4", "https://telegra.ph/file/be5f551acb116292d15ec.png")
 
 
 #OWNERS CONFIG
-SUDO_USERS = list(map(int, getenv("SUDO_USERS").split()))
-PRO_USERS = list(map(int, getenv("PRO_USERS").split()))
-NOOB_USERS = list(map(int, getenv("NOOB_USERS").split()))
-OWNER_ID = int(os.environ.get("OWNER_ID"))
-ADMINS = int(os.environ.get("OWNER_ID"))
+SUDO_USERS = list(map(int, getenv("SUDO_USER", "1805398747").split()))
+PRO_USERS = list(map(int, getenv("PRO_USERS", "1805398747").split()))
+NOOB_USERS = list(map(int, getenv("NOOB_USERS", "1805398747").split()))
+OWNER_ID = int(os.environ.get("OWNER_ID", "1805398747"))
+ADMINS = int(os.environ.get("OWNER_ID", "1805398747"))
 
 #CHANNEL AND GROUPS
 GROUP_SUPPORT = getenv("GROUP_SUPPORT", "DK_BOTZ")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "DK_BOTZ")
-UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "DKBOTZ")
+SUPPORT_CHAT = getenv("SUPPORT_CHATS", "DK_BOTZ")
+UPDATES_CHANNEL = getenv("UPDATES_CHANNELS", "DKBOTZ")
 # make a private channel and get the channel id
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL"))
 AUTH_CHANNEL = int(os.environ.get("AUTH_CHANNEL"))
@@ -55,9 +55,9 @@ INDEX_REQ_CHANNEL = int(os.environ.get("INDEX_REQ_CHANNEL", LOG_CHANNEL))
 
 #OTHERS
 # isi dengan username kamu tanpa simbol @
-OWNER_NAME = getenv("OWNER_NAME", "DKBOTZHELP")
+OWNER_NAME = getenv("OWNER_NAMES", "DKBOTZHELP")
 # fill with your nickname
-ALIVE_NAME = getenv("ALIVE_NAME", "Anonymous")
+ALIVE_NAME = getenv("ALIVE_NAMES", "Anonymous")
 
 # just fill with True or False (optional)
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "60"))
@@ -65,8 +65,8 @@ COMMAND_PREFIXES = list(getenv("COMMAND_PREFIXES", "/ ! .").split())
 
 #MONGA DB URL
 BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
-DATABASE_URL = environ.get('DATABASE_URL', "")
-DATABASE_URI = environ.get('DATABASE_URL', "")
+DATABASE_URL = environ.get('DATABASE_URL', "mongodb://mongo:wWp1Uq4pxGd0L88A3Owm@containers-us-west-65.railway.app:5653")
+DATABASE_URI = environ.get('DATABASE_URL', "mongodb://mongo:wWp1Uq4pxGd0L88A3Owm@containers-us-west-65.railway.app:5653")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Watermarks")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
