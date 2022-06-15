@@ -1,7 +1,7 @@
 TgCrypto
 ffmpeg-python
 git+https://github.com/pyrogram/pyrogram@master
-pytgcalls
+pytgcalls==0.4.0
 tswift
 youtube_search_python
 youtube_search
