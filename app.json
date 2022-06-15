@@ -23,37 +23,9 @@
             "description": "your bot token from @BotFather",
             "required": true
         },
-        "BOT_USERNAME": {
-            "description": "your bot username from @BotFather",
-            "required": true
-        },
-        "BOT_NAME": {
-            "description": "fill with your bot name from @BotFather",
-            "required": true
-        },
-        
         "SESSION_NAME": {
             "description": "fill with the pyrogram String Session",
             "required": true
-        },
-        "SUDO_USERS": {
-            "description": "list of user ids to be added to sudo member list, or just fill with your id",
-            "required": true
-        },
-        "SUPPORT_GROUP": {
-            "description": "if you have group, then fill the group username here without @",
-            "required": true,
-            "value": "decodeSupport"
-        },
-        "UPDATES_CHANNEL": {
-            "description": "if you have channel, then fill the channel username here without @",
-            "required": true,
-            "value": "DeecodeBots"
-        },
-        "OWNER_NAME": {
-            "description": "fill with your telegram account username without @",
-            "required": true,
-            "value": "piroXpower"
         },
         "ALIVE_NAME": {
             "description": "fill with your telegram account nickname/name",
